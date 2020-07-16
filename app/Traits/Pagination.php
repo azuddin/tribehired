@@ -25,7 +25,10 @@ trait Pagination
 
         if (isset($validated['filtered']) && count($validated['filtered']) > 0) {
             foreach ($validated['filtered'] as $item) {
-                $data = $data->where($item['id'], 'like', '%' . $item['value'] . '%');
+                if ((substr($item['id'], -3) === '_id')) //for filtering foreign id
+                    $data = $data->where($item['id'], '=', $item['value']);
+                else
+                    $data = $data->where($item['id'], 'like', '%' . $item['value'] . '%');
             }
         }
 

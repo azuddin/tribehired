@@ -32,6 +32,8 @@ class DatabaseSeeder extends Seeder
                     'email'=>$item->email,
                     'body'=>$item->body
                 ]);
+                $post->num_of_comments += 1;
+                $post->save();
             }
         }
     }

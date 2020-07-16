@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PostsResource extends JsonResource
+class CommentsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,10 +15,11 @@ class PostsResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'title' => $this->title,
-            'body' => $this->body,
-            'num_of_comments' => $this->num_of_comments
+            'id'=>$this->id,
+            'post_id'=>$this->post_id,
+            'name'=>$this->name,
+            'email'=>$this->email,
+            'body'=>$this->body
         ];
     }
 }

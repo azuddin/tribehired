@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('posts', 'PostController@index')->name('post_list');
-Route::get('posts/{post_id}', 'PostController@index')->name('post_list');
+Route::get('posts/{post}', 'PostController@show')->name('post_list');
 
 Route::get('comments', 'CommentController@index')->name('comment_list');
+Route::post('comments', 'CommentController@store')->name('comment_add');
