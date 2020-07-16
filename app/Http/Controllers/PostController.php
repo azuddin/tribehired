@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use App\Traits\Pagination;
+use App\Http\Resources\PostsResource;
 
 class PostController extends Controller
 {
@@ -12,9 +14,12 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $available_key = ['id', 'postId', 'name', 'email', 'body'];
+        $paginate = Pagination::paginate($request, new Post, $available_key);
+
+        return PostsResource::collection($paginate['data'])->additional(['meta'=>['total' => $paginate['count']]]);
     }
 
     /**
